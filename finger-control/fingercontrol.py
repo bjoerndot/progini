@@ -10,19 +10,19 @@ from camera import CameraFactory
 import argparse
 
 # Screen resolution
-SCREEN_WIDTH=1280
-SCREEN_HEIGHT=720
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 
 # Definition of area of interest
 # This is set to the area of the projection
-X_OFFSET=280
-Y_OFFSET=0
-WIDTH=680
-HEIGHT=340
+X_OFFSET = 280
+Y_OFFSET = 0
+WIDTH = 680
+HEIGHT = 340
 
 # Thresholds
-REFLECTIONS_THRESHOLD=30
-MOVEMENT_THRESH=100000
+REFLECTIONS_THRESHOLD = 30
+MOVEMENT_THRESH = 100000
 
 # Image processing iteration (for debugging only)
 iteration = 0
@@ -34,7 +34,7 @@ def to_grayscale(image):
 
 
 def clip_projection_area(image):
-    result = image[Y_OFFSET : (Y_OFFSET + HEIGHT), X_OFFSET : (X_OFFSET + WIDTH)]
+    result = image[Y_OFFSET: (Y_OFFSET + HEIGHT), X_OFFSET: (X_OFFSET + WIDTH)]
     return result
 
 
@@ -52,7 +52,7 @@ def preprocess_image(image):
 def remove_background(camera):
     global args
 
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     _, backgroundRemoved = cv2.threshold(camera, 100, 255, cv2.THRESH_BINARY)
 
     if args.debug: write_debug_image('background_removed', backgroundRemoved)
@@ -92,8 +92,8 @@ def detectMovement(pixel_delta):
 
 def determine_contour_maximum_point(image):
     # Get the biggest contour on the screen
-    _img, contours, _hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    biggest_contour = max(contours, key = cv2.contourArea)
+    contours, _hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    biggest_contour = max(contours, key=cv2.contourArea)
 
     # Get the extrem points of the biggest contour.
     left = tuple(biggest_contour[biggest_contour[:, :, 0].argmin()][0])
@@ -150,38 +150,41 @@ def main():
     global args, iteration
 
     if args.source:
-        camera = CameraFactory.create('file', folder = args.source)
+        camera = CameraFactory.create(source='file', folder=args.source)
     else:
-        camera = CameraFactory.create('camera')
+        camera = CameraFactory.create(source='camera')
 
-    with camera:
-        camera.initialize()
-        img_old = preprocess_image(camera.take_picture(iteration))
-        while True:
-            original = camera.take_picture(iteration)
+    if camera is not None:
+        with camera:
+            camera.initialize()
+            img_old = preprocess_image(camera.take_picture(iteration))
+            while True:
+                original = camera.take_picture(iteration)
 
-            if args.debug: write_debug_image('camera', original)
+                if args.debug: write_debug_image('camera', original)
 
-            img_new = remove_background(preprocess_image(original))
+                img_new = remove_background(preprocess_image(original))
 
-            threshold_img = calc_threshold_image(img_old, img_new)
-            img_delta = np.sum(threshold_img)
-            print(img_delta)
+                threshold_img = calc_threshold_image(img_old, img_new)
+                img_delta = np.sum(threshold_img)
+                print(img_delta)
 
-            if detectMovement(img_delta):
-                fingertip = determine_contour_maximum_point(threshold_img)
+                if detectMovement(img_delta):
+                    fingertip = determine_contour_maximum_point(threshold_img)
 
-                if fingertip is not None:
-                    # Draw a circle at the point of the fingertip
-                    cv2.circle(threshold_img, fingertip, 8, (255, 0, 0), -1)
+                    if fingertip is not None:
+                        # Draw a circle at the point of the fingertip
+                        cv2.circle(threshold_img, fingertip, 8, (255, 0, 0), -1)
 
-                    if args.source:
-                        write_output_image('result', threshold_img)
-                    else:
-                        click_at(scale_position_to_screen(fingertip))
+                        if args.source:
+                            write_output_image('result', threshold_img)
+                        else:
+                            click_at(scale_position_to_screen(fingertip))
 
-            img_old = img_new
-            iteration = iteration + 1
+                img_old = img_new
+                iteration = iteration + 1
+    else:
+        print('No camera initialized.')
 
 
 def create_timestamp_folder(name):

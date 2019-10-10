@@ -52,7 +52,7 @@ if pi_camera_available:
             return self.camera.__enter__()
 
         def __exit__(self):
-            self.camera.__exit__()
+            self.camera.close()
 
 
 class FileCamera(Camera):
@@ -80,9 +80,20 @@ class FileCamera(Camera):
 class CameraFactory:
     @staticmethod
     def create(source, folder = FOLDER, file_name = FILE_NAME):
-        if source == 'camera':
-            return PiCamera(RESOLUTION_WITH, RESOLUTION_HEIGHT)
-        elif source == 'file':
-            return FileCamera(folder, file_name)
+        if source is not None:
+            if source == 'camera':
+                try:
+                    PiCamera(RESOLUTION_WITH, RESOLUTION_HEIGHT)
+                except NameError:
+                    print('PiCamera not defined. May be missing -input argument.')
+                else:
+                    return PiCamera(RESOLUTION_WITH, RESOLUTION_HEIGHT)
+            elif source == 'file':
+                try:
+                    FileCamera(folder, file_name)
+                except NameError:
+                    print('FileCamera not defined.')
+                else:
+                    return FileCamera(folder, file_name)
         else:
             raise LookupError('No matching object found')
