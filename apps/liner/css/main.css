@@ -1,0 +1,151 @@
+/*!
+ * oliverschwamb v0.0.1
+ * Oliver Schwamb - UX-Designer
+ * (c) 2019 OLIVER SCHWAMB
+ * MIT License
+ * http://link-to-your-git-repo.com
+ */
+
+/* line 15, src/sass/main.sass */
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 10px;
+}
+
+/* line 19, src/sass/main.sass */
+body {
+  width: 100%;
+  height: 100vw;
+  background-color: #777777;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 1.6rem;
+  overflow: hidden;
+}
+
+/* line 27, src/sass/main.sass */
+.liner_h1 {
+  font-size: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 32, src/sass/main.sass */
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 38, src/sass/main.sass */
+.liner_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 44, src/sass/main.sass */
+.liner_canvas {
+  width: 500px;
+  height: 500px;
+  border: 5px solid #111;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+/* line 53, src/sass/main.sass */
+.liner_line {
+  width: 100%;
+  border-top: 2px solid #777777;
+  border-bottom: 2px solid #777777;
+  position: relative;
+}
+
+/* line 60, src/sass/main.sass */
+.liner_line::after {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: 0;
+  left: 0;
+  content: "";
+  border-bottom: 2px solid #bbb;
+}
+
+/* line 69, src/sass/main.sass */
+.liner_divider {
+  width: 100%;
+  background-color: #777777;
+}
+
+/* line 73, src/sass/main.sass */
+.settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-self: flex-end;
+  margin-left: 5%;
+}
+
+/* line 79, src/sass/main.sass */
+.settings_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* line 82, src/sass/main.sass */
+.settings_button {
+  background-color: #00008b;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  width: 6rem;
+  height: 6rem;
+  color: #fff;
+  font-size: 4rem;
+}
+
+/* line 90, src/sass/main.sass */
+.settings_label {
+  font-weight: bold;
+  color: #00008b;
+}
