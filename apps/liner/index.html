@@ -7,17 +7,47 @@
     <title>Liner</title>
   </head>
   <body>
-    <h1 class="liner_h1">Liner</h1>
+    <header>
+      <h1 class="liner_h1">Liner</h1>
+      <div class="settings">
+        <div class="settings_item">
+          <div class="settings_label">Zeilenhöhe: 00mm</div>
+          <div class="settings_buttons">
+            <button class="settings_button" data-module="line-height" data-dir="+">
+              <div class="plus"></div>
+            </button>
+            <button class="settings_button" data-module="line-height" data-dir="-">
+              <div class="minus"></div>
+            </button>
+          </div>
+        </div>
+        <div class="settings_item">
+          <div class="settings_label">Oberlänge: 00%</div>
+          <div class="settings_buttons">
+            <button class="settings_button" data-module="upper-length" data-dir="+">
+              <div class="plus"></div>
+            </button>
+            <button class="settings_button" data-module="upper-length" data-dir="-">
+              <div class="minus"></div>
+            </button>
+          </div>
+        </div>
+        <div class="settings_item">
+          <div class="settings_label">Zeilenabstand: 00mm</div>
+          <div class="settings_buttons">
+            <button class="settings_button" data-module="line-distance" data-dir="+">
+              <div class="plus"></div>
+            </button>
+            <button class="settings_button" data-module="line-distance" data-dir="-">
+              <div class="minus"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
     <section class="content">
       <div class="liner_container">
         <div class="liner_canvas"></div>
-      </div>
-      <div class="settings">
-        <div class="settings_label">Handle Line-Heigt - current: 00 mm</div>
-        <div class="settings_item">
-          <button class="settings_button" data-module="line-height" data-dir="+">+</button>
-          <button class="settings_button" data-module="line-height" data-dir="-">-</button>
-        </div>
       </div>
     </section>
     <script src="./js/index.min.js"></script>

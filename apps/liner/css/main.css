@@ -6,31 +6,45 @@
  * http://link-to-your-git-repo.com
  */
 
-/* line 15, src/sass/main.sass */
+/* line 18, src/sass/main.sass */
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 10px;
 }
 
-/* line 19, src/sass/main.sass */
+/* line 22, src/sass/main.sass */
 body {
   width: 100%;
   height: 100vw;
-  background-color: #777777;
+  background: -webkit-gradient(linear, left top, right top, from(#010c18), color-stop(#152029), color-stop(#25333c), color-stop(#36464f), to(#485b62));
+  background: linear-gradient(to right, #010c18, #152029, #25333c, #36464f, #485b62);
   font-family: "Open Sans", "Arial", sans-serif;
   font-size: 1.6rem;
   overflow: hidden;
 }
 
-/* line 27, src/sass/main.sass */
+/* line 30, src/sass/main.sass */
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 0 5%;
+}
+
+/* line 35, src/sass/main.sass */
 .liner_h1 {
   font-size: 4rem;
   width: 100%;
   text-align: center;
+  color: #f9f871;
 }
 
-/* line 32, src/sass/main.sass */
+/* line 41, src/sass/main.sass */
 .content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,7 +61,7 @@ body {
           align-items: center;
 }
 
-/* line 38, src/sass/main.sass */
+/* line 47, src/sass/main.sass */
 .liner_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -64,11 +78,12 @@ body {
           align-items: center;
 }
 
-/* line 44, src/sass/main.sass */
+/* line 53, src/sass/main.sass */
 .liner_canvas {
   width: 500px;
   height: 500px;
-  border: 5px solid #111;
+  -webkit-box-shadow: 2px 6px 20px 7px black;
+          box-shadow: 2px 6px 20px 7px black;
   background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -77,37 +92,54 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
-/* line 53, src/sass/main.sass */
+/* line 62, src/sass/main.sass */
 .liner_line {
   width: 100%;
-  border-top: 2px solid #777777;
-  border-bottom: 2px solid #777777;
+  border-top: 2px solid #485b62;
+  border-bottom: 2px solid #485b62;
   position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-/* line 60, src/sass/main.sass */
-.liner_line::after {
+/* line 68, src/sass/main.sass */
+.liner_line--middle {
   position: absolute;
   width: 100%;
   height: 40%;
   top: 0;
   left: 0;
-  content: "";
   border-bottom: 2px solid #bbb;
 }
 
-/* line 69, src/sass/main.sass */
+/* line 76, src/sass/main.sass */
 .liner_divider {
   width: 100%;
-  background-color: #777777;
+  background-color: #485b62;
 }
 
-/* line 73, src/sass/main.sass */
+/* line 80, src/sass/main.sass */
 .settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-self: flex-end;
+}
+
+/* line 85, src/sass/main.sass */
+.settings_item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,15 +147,20 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: 1rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  justify-self: flex-end;
-  margin-left: 5%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 19rem;
 }
 
-/* line 79, src/sass/main.sass */
-.settings_item {
+/* line 93, src/sass/main.sass */
+.settings_buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -133,19 +170,70 @@ body {
           flex-direction: row;
 }
 
-/* line 82, src/sass/main.sass */
+/* line 96, src/sass/main.sass */
 .settings_button {
-  background-color: #00008b;
+  background-color: #69c38e;
   border-radius: 50%;
   border: 2px solid #fff;
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   color: #fff;
   font-size: 4rem;
+  margin: 0.7rem;
 }
 
-/* line 90, src/sass/main.sass */
+/* line 105, src/sass/main.sass */
 .settings_label {
   font-weight: bold;
-  color: #00008b;
+  color: #69c38e;
+}
+
+/* line 109, src/sass/main.sass */
+.plus {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 113, src/sass/main.sass */
+.plus::after, .plus::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: .4rem;
+  width: 3rem;
+  background: #fff;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+/* line 124, src/sass/main.sass */
+.plus::after {
+  -webkit-transform: rotate(90deg) translateX(-0.2rem);
+          transform: rotate(90deg) translateX(-0.2rem);
+}
+
+/* line 127, src/sass/main.sass */
+.minus {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 131, src/sass/main.sass */
+.minus::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: .4rem;
+  width: 3rem;
+  background: #fff;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
